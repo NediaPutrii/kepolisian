@@ -48,7 +48,7 @@
                     
                     <td> 
                       
-                        <a href="../view/halamanedit.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-warning">Edit</a>
+                        <a href="../view/haledit.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-warning">Edit</a>
                         <a href="../controller/hapus.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-danger">Hapus</a>
                     </td>
                 </tr>
