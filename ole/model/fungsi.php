@@ -149,6 +149,68 @@
     echo "<script>window.alert('$msg');window.location=('$url');</script>";
   }
 
+  function register($data){
+    global $conn;
+
+    $username=strtolower(stripcslashes($data["username"]));
+    $password= mysqli_real_escape_string($conn, $data["password"]);
+    $password2= mysqli_real_escape_string($conn,$data["password2"]);
+    // $status=$data["user"];
+
+
+    if($password !== $password2){
+        echo "
+        <script>
+        alert('Password tidak sesuai');
+        </script>
+
+        ";
+        return false;
+    }
+
+    //enskripsi pass
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    //tambahkan user ke db
+    mysqli_query($conn, "INSERT INTO admin VALUES ('','$username','$password')");
+
+
+
+    return mysqli_affected_rows($conn);
+
+}
+
+function login($data){
+    global $conn;
+
+    $username = $data["username"];
+    $password = $data["password"];
+
+    $result = mysqli_query($conn,"SELECT *FROM admin WHERE username = '$username'");
+
+    if(mysqli_num_rows($result) ===1){
+
+        $row = mysqli_fetch_assoc($result);
+        if(password_verify($password, $row["password"])){
+
+            $_SESSION["login"] = true;
+
+            if($row['status']=="admin"){
+                header("Location: admin.php");
+            exit;
+            }else{
+                header("Location: index.php");
+            exit;
+            }
+
+
+            
+        }
+
+    }
+    $error = true;
+}
+
   
       
 ?>
