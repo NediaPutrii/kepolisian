@@ -11,6 +11,37 @@
 
     <h1 class="title" align="center" style="margin-top: 40px;">Laporan Kepolisian</h1>
 
+    <form action="" method="post">
+    <div class="container">
+            <tr>
+                <td>
+                    Pilih Bulan (Jika Perlu)
+                </td>
+                <br>
+                <td>
+                    <select name="bulan" id="">
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
+                </td>
+                <td>          
+                    <input type="submit" value="Cari">  
+                </td>
+            </tr>
+        </div>
+    </form>
+    <br>
+
     <div class="container">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
             <thead>
@@ -35,7 +66,23 @@
                        $no=1;
                  ?>
          
-            <?php foreach($laporan as $row) :?>
+            <?php 
+
+             if(isset($_POST['bulan']))
+             {
+                 $koneksi = mysqli_connect("localhost","root","","dbkepolisiann");
+                 $bulan = $_POST['bulan'];
+                 $laporan = mysqli_query($koneksi, "SELECT * FROM laporan where month(tgl_kejadian)='$bulan'" );
+             }
+             else
+             {
+                $koneksi = mysqli_connect("localhost","root","","dbkepolisiann");
+                $laporan = mysqli_query($koneksi, "SELECT * FROM laporan" );
+
+             }
+            
+            
+            foreach($laporan as $row) :?>
                 <tr>
                     <td><?php echo $no;?></td>
                     <td><?php echo $row["no_lapkejadian"]; ?></td>
