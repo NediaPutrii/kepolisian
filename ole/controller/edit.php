@@ -1,7 +1,7 @@
 <?php 
 
 	require '../model/fungsi.php';
-
+	//dhinda manis wkwk
 	$id = $_GET["id"];
 
 	$laporan = lihat("select * from laporan where id= $id")[0];
