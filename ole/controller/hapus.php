@@ -1,25 +1,11 @@
-<?php 
-	
-	require'../model/fungsi.php';
 
-	$id=$_REQUEST["id"];
+ <?php
 
-    if ( hapus($id) > 0) {
-      echo "
-        <script>
-        alert('data berhasil dihapus');
-        document.location.href = '../view/halamantampil.php';
-        </script>
-      ";
-    }
-    else {
-      echo "
-      <script>
-        alert('data gagal dihapus');
-        document.location.href = '../view/halamantampil.php';
-        </script>
-      ";
-    }
+include_once("../koneksi.php");
 
 
- ?>
+$conn->query("DELETE FROM laporan where no_lapkejadian='$_GET[id]'");
+
+
+echo "<meta http-equiv='refresh' content='1;url=../view/halamantampil.php'>";
+?> 
