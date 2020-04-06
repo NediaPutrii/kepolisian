@@ -106,6 +106,8 @@
 
         <a class="button is-primary" href="tambahlaporan.php">Tambah Data</a>
         <a class="button is-primary" href="halamandetail.php">Detail Data</a>
+        <a class="button is-primary" href="tampilkec.php">Lihat Data per Bulan</a>
+
 
     </div>
 
