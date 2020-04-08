@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Halaman Data Kepolisian</title>
+        <title>Halaman Data Kepolisian (Kecamatan)</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css"/>
     </head>
     <body>
@@ -48,6 +48,7 @@
                     <th>Status Kejadian</th>
                     <th>Longitude</th>
                     <th>Latitude</th>
+                    <th>Id kecamatan</th>
                     <th>Tools</th>
 
                 </tr>
@@ -86,11 +87,13 @@
                     <td><?php echo $row["status_kejadian"]; ?></td>
                     <td><?php echo $row["latitude"]; ?></td>
                     <td><?php echo $row["longitude"]; ?></td>
-                    
+                    <td><?php echo $row["id_kecamatan"]; ?></td>                    
                     <td> 
                       
                         <a href="../view/haledit.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-warning">Edit</a>
                         <a href="../controller/hapus.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-danger">Hapus</a>
+                        <a href="../view/haldetail.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-primary">Detail</a>
+
                     </td>
                 </tr>
             <?php $no++; ?>
