@@ -173,8 +173,14 @@
                     <td>: <?php echo $data['pasal'] ?></td>
                 </tr>
            </table>
-
            <hr><br><br>
+
+           <div>
+           <a href="../laporan/cetaklaporan.php?id=<?php echo $no_lapkejadian;?>" class="button is-warning"><i class="fas fa-edit fa-sm"></i>Cetak Laporan</a href=""></a>
+           <a class="button is-primary" href="halamantampil.php">Kembali</a>
+           </div>
+
+
            <div  class="container" id="penyidik" style="margin-right:100px;margin-left:600px;text-align:center;" >
  
                 <b>Penyidik</b>
@@ -186,6 +192,7 @@
     </div>
     <br><br>
   
+
 
     </body>
 </html>
