@@ -9,32 +9,6 @@
   </head>
   <body>
   <section class="hero is-warning is-bold">
-	  <div class="hero-head">
-    <header class="navbar">
-      <div class="container">
-        <div id="navbarMenuHeroC" class="navbar-menu">
-          <div class="navbar-end">
-            <a class="navbar-item is-active" href="register.php">
-              Sign-In
-            </a>
-            <a class="navbar-item" href="login.php">
-              Login
-            </a>
-            
-            <span class="navbar-item">
-              <a class="button is-success is-inverted" href="logout.php">
-                <span class="icon">
-                  <i class="fab fa-github"></i>
-                </span>
-                <span>Logout</span>
-              </a>
-            </span>
-          </div>
-        </div>
-      </div>
-    </header>
-  </div>
-	  
   	<div class="hero-body">
   		<div class="container">
     	<img src="img\Lambang_Polda_Riau.png" alt="" width="100px" height="100px">
@@ -62,6 +36,8 @@
     <li><a class="is-active" href="index.php">Dashboard</a></li>
     <li><a href="view/tambahlaporan.php">Form Laporan Kepolisian</a></li>
     <li><a href="view/halamantampil.php">Laporan Kepolisian</a></li>
+    <li><a href="view/grafik.php">Grafik Kejadian</a></li>
+    <li><a href="view/grafik_tersangka.php">Grafik Tersangka</a></li>
   </ul>
   <p class="menu-label">
     Administration
