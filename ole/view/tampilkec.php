@@ -67,12 +67,12 @@
              {
                 $koneksi = mysqli_connect("localhost","root","","dbkepolisiann");
                 $kecamatan = $_POST['kecamatan'];
-                $laporan = mysqli_query($koneksi, "SELECT * from detailpenduduk inner join laporan on detailpenduduk.no_lapkejadian=laporan.no_lapkejadian inner join detailstatus on detailpenduduk.nik=detailstatus.nik where id_kecamatan='$kecamatan'" );                
+                $laporan = mysqli_query($koneksi, "SELECT * from laporan where id_kecamatan='$kecamatan'" );                
              }
              else
              {
                 $koneksi = mysqli_connect("localhost","root","","dbkepolisiann");
-                $laporan = mysqli_query($koneksi, "SELECT * from detailpenduduk inner join laporan on detailpenduduk.no_lapkejadian=laporan.no_lapkejadian inner join detailstatus on detailpenduduk.nik=detailstatus.nik" );
+                $laporan = mysqli_query($koneksi, "SELECT * from laporan" );
 
              }
             

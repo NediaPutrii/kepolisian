@@ -277,6 +277,30 @@ if( !isset($_SESSION["login"])){
       </td>
     </tr>
 
+    <br>
+
+    <tr>
+      <td>Kecamatan</td>
+      <td>
+        <div class="control">
+          <div class="select">
+            <select name="kecamatan">
+              <option >Please Select</option>
+              <option value="kc1">Bukit raya </option>
+              <option value="kc2">Pekanbaru Kota</option>
+              <option value="kc3">Lima Puluh</option>
+              <option value="kc4">Rumbai</option>
+              <option value="kc5">Rumbai Pesisir</option>
+              <option value="kc6">Senapelan</option>
+              <option value="kc7">Sukajadi</option>
+              <option value="kc8">Tampan</option>
+            </select>
+          </div>
+        </div>
+
+      </td>
+    </tr>
+
 <br>
 
     <tr>

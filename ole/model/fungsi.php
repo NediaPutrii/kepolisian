@@ -25,10 +25,11 @@
         $tgl_kejadian   = $data["tgl_kejadian"];
         $penanganan     = $data['penanganan'];
         $status         = $data['status'];
+        $kecamatan      = $data['kecamatan'];
         $latitude       = $data['lat'];
         $longitude      = $data['lng'];
       
-        $query = "INSERT INTO laporan VALUES ('$nolaporan','$tkp','$tgl_kejadian','$penanganan','$status','$latitude','$longitude')";
+        $query = "INSERT INTO laporan VALUES ('$nolaporan','$tkp','$tgl_kejadian','$penanganan','$status','$latitude','$longitude',$kecamatan)";
 
         
         mysqli_query($conn,$query);
