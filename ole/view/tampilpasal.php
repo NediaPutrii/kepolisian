@@ -39,6 +39,8 @@
                     <?php } ?>
 
         </table>
+        <a class="button is-primary" href="../index.php">Home</a>
+
     </div>
   </section>
 

@@ -38,6 +38,9 @@
     <li><a href="view/halamantampil.php">Laporan Kepolisian</a></li>
     <li><a href="view/grafik.php">Grafik Kejadian</a></li>
     <li><a href="view/grafik_tersangka.php">Grafik Tersangka</a></li>
+    <li><a href="view/tampilkejahatan.php">Kejahatan</a></li>
+    <li><a href="view/tampilpasal.php">Pasal</a></li>
+
   </ul>
   <p class="menu-label">
     Administration
