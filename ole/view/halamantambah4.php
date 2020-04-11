@@ -89,12 +89,13 @@
       <p class="title">Pasal</p>
 
 
-     <form action="halamantambah4.php" method="post">
+     <form action="kejahatanlaporan.php" method="post">
  <!--    <progress class="progress is-warning" value="15" max="100">25%</progress> -->
     
  <?php 
-        include"../koneksi.php";  
-            $result = mysqli_query($conn,"SELECT * FROM jenis_kejahatan order by id_jeniskejahatan");   
+        //include"../koneksi.php";  
+        $koneksi = mysqli_connect("localhost","root","","dbkepolisiann");
+            $result = mysqli_query($koneksi,"SELECT * FROM kejahatan ");   
 
 
 
@@ -104,16 +105,16 @@
 
           <div class="container">
             <div class="field">
-              <label class="label">JENIS JENIS KEJAHATAN</label>
+              <label class="label"> KEJAHATAN</label>
                 <div class="control">
                   <div class="select">
-                    <select name="jahat">
+                    <select name="kejahatan">
                       <?php
                          while($row = mysqli_fetch_assoc($result))
                          {
                       
-                           echo "<option>".$row[id_jeniskejahatan]."</option>";
-                           echo "<option disabled>".$row[jenis_kejahatan]."</option>";
+                           echo "<option>".$row[id_kejahatan]."</option>";
+                           echo "<option disabled>".$row[nama_kejahatan]."</option>";
                           } 
                   
                      
@@ -123,7 +124,18 @@
                    
                   </div>
                 </div>
-              </div> 
+                <tr>
+      <td>No laporan</td>
+      <td>
+        <div class="field">
+          <div class="control">
+          <input  class="input" type="text" placeholder="No. Laporan Kejadian" name="nolaporan" value="<?php 
+              $nolaporan=$_REQUEST['nolaporan'];
+              echo($nolaporan) ?>" readonly>          </div>
+        </div>
+      </td>
+    </tr>
+              <!-- </div> 
               <tr>
       <td>ID Pasal </td>
       <td>
@@ -133,9 +145,9 @@
           </div>
         </div>
       </td>
-    </tr>
+    </tr> -->
 
-    <tr>
+    <!-- <tr>
       <td>Pasal</td>
       <td>
         <div class="field">
@@ -154,11 +166,11 @@
         <div class="field">
           <div class="control">
           <!--    <input class="input" type="text-area" placeholder="" name="isi_pasal" id="id_pasal"> -->
-          <td><textarea cols="110" rows="10" name="isi_pasal" id="id_pasal"></textarea></td>
+          <!-- <td><textarea cols="110" rows="10" name="isi_pasal" id="id_pasal"></textarea></td>
           </div>
         </div>
       </td>
-    </tr>
+    </tr> -->
 
 
      <tr>
@@ -192,19 +204,19 @@
   </div>
 </footer>
 
-<?php 
-  $id_pasal = $_POST["id_pasal"];
-  $pasal= $_POST["pasal"];
-  $isi_pasal = $_POST["isi_pasal"];
+<!-- <?php 
+  // $id_pasal = $_POST["id_pasal"];
+  // $pasal= $_POST["pasal"];
+  // $isi_pasal = $_POST["isi_pasal"];
 
-  $conn = mysqli_connect("localhost","root","","dbkepolisian")
-  or die("koneksi gagal");
+  // $conn = mysqli_connect("localhost","root","","dbkepolisian")
+  // or die("koneksi gagal");
 
-  $sql = "insert into pasal values ('$id_pasal','$pasal','$isi_pasal')";
+  // $sql = "insert into pasal values ('$id_pasal','$pasal','$isi_pasal')";
 
-  $hasil = mysqli_query($conn,$sql);
+  // $hasil = mysqli_query($conn,$sql);
 
- ?>
+ ?> -->
 
   </body>
 
