@@ -1,24 +1,16 @@
 <?php 
-  require '../model/fungsi.php';
 
+session_start();
 
-  if ( isset($_POST["tambah"]) ) {
-    if ( tambah1($_POST) > 0  ) {
-          
-      if (tambah2($_POST)>0 && tambah3($_POST)>0) {
+include"../koneksi.php";
 
-         if (tambah6($_POST)>0 ) {
+if( !isset($_SESSION["login"])){
+  header("Location: ../login.php");
+  exit;
+}
 
-         echo "
-        <script>
-        alert('data berhasil ditambahkan');
-        
-        </script>
-      ";
+ ?>
 
-
-?>      
-   
     <!DOCTYPE html>
     <html>
       <head>
@@ -107,12 +99,68 @@
       </div>
       <div class="tile is-parent">
         <div class="tile is-child box">
-          <p class="title">Data Saksi 1</p>
+          <p class="title">Data Saksi </p>
 
-         <form action="tambahsaksi2.php" method="post">
+
+      
+      <form action="" method="post">
+    <tr>
+      <td>Cari Data Saksi: </td>
+      <td>
+        <div class="field">
+          <div class="control">
+            <table>
+              <tr>
+                <td><input class="input" type="text" placeholder="Pencarian" name="nt" ></td>
+                <td><input type="submit" name="submit" value="Cari" class="button"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+      </form>
+      <br>
+
+
+   <table border=1 class="table">
+    
+    <?php if (ISSET($_POST['submit'])){ ?>
+      <tr> 
+      <td>Nama</td>
+      <td>NIK</td>
+      <td>Alamat</td>
+      <td>No Telp</td>
+      <td>Tools</td>
+    </tr>
+
+    <?php
+     $cari = $_POST['nt'];
+     $query2 = "SELECT * FROM penduduk WHERE nama LIKE '%$cari%'";
+     
+     $sql = mysqli_query($conn, $query2);
+     while ($r = mysqli_fetch_array($sql)){
+      ?>
+    <tr>
+     <td><?php echo $r['nama']; ?></td>
+     <td><?php echo $r['nik']; ?></td>
+     <td><?php echo $r['alamat']; ?></td>
+     <td><?php echo $r['notlp']; ?></td>
+     <td><div class="buttons">
+         <a href="carisaksi.php?id=<?php echo $r['nik'] ?>" class="button">OK</a>
+         <a href="" class="button">Cancel</a>
+      </div></td>
+     
+    </tr>  
+     <?php }} ?>
+
+</table>
+
+
+
+         <form action="../controller/addsaksi.php" method="post">
      <!--    <progress class="progress is-warning" value="35" max="100">25%</progress> -->
-
-  <br>
 
        <tr>
       <td> <label for="">No. Laporan Kejadian</label> </td>
@@ -120,7 +168,7 @@
         <div class="field">
           <div class="control">
              <input  class="input" type="text" placeholder="No. Laporan Kejadian" name="nolaporan" value="<?php 
-              $nolaporan=$_REQUEST['nolaporan'];
+              $nolaporan=$_SESSION['nolaporan'];
               echo($nolaporan) ?>" readonly>
           </div>
         </div>
@@ -130,7 +178,7 @@
      <?php 
         include"../koneksi.php";
                     
-            $result = mysqli_query($conn,"SELECT * FROM status_penduduk order by id_status");      
+            $result = mysqli_query($conn,"SELECT * FROM status_penduduk where id_status='S03'");      
           ?>
 
           <div class="container">
@@ -246,13 +294,23 @@
     <tr>
       
       <td> 
-      
-        <button class="button is-success is-outlined" type="submit" name="tambah">
+        <div class="buttons">
+          <button class="button is-success is-outlined" type="submit" name="tambah">
+            <span class="icon is-small">
+              <i class="fas fa-plus"></i>
+            </span>
+            <span>Add</span>
+          </button>
+
+          <button class="button is-success is-outlined" type="submit" name="save">
             <span class="icon is-small">
               <i class="fas fa-check"></i>
             </span>
             <span>Save</span>
           </button>
+        </div>
+      
+        
       
       </td>
     </tr>
@@ -303,16 +361,3 @@
 
     </html>
 
-<?php 
-}
-  }
-    }else {
-      echo " 
-      <script>
-        alert('data gagal ditambahkan');
-          document.location.href = '../view/tambahlaporan.php';
-        </script>
-      ";
-    }
-  }
-?>

@@ -1,46 +1,26 @@
+<?php 
+
+ include '../controller/lihat.php';
+
+if( !isset($_SESSION["login"])){
+  header("Location: ../login.php");
+  exit;
+}
+
+ ?>
+
 <!DOCTYPE html>
 <html lang="">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Halaman Data Kepolisian (Bulan)</title>
+        <title>Halaman Data Kepolisian</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.0/css/bulma.css"/>
     </head>
     <body>
 
     <h1 class="title" align="center" style="margin-top: 40px;">Laporan Kepolisian</h1>
-
-    <form action="" method="post">
-    <div class="container">
-            <tr>
-                <td>
-                    Pilih Bulan (Jika Perlu)
-                </td>
-                <br>
-                <td>
-                    <select name="bulan" id="">
-                            <option value="01">Januari</option>
-                            <option value="02">Februari</option>
-                            <option value="03">Maret</option>
-                            <option value="04">April</option>
-                            <option value="05">Mei</option>
-                            <option value="06">Juni</option>
-                            <option value="07">Juli</option>
-                            <option value="08">Agustus</option>
-                            <option value="09">September</option>
-                            <option value="10">Oktober</option>
-                            <option value="11">November</option>
-                            <option value="12">Desember</option>
-                        </select>
-                </td>
-                <td>          
-                    <input type="submit" value="Cari">  
-                </td>
-            </tr>
-        </div>
-    </form>
-    <br>
 
     <div class="container">
         <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -48,63 +28,39 @@
                 <tr>
                     <th>No</th>
                     <th>No.Laporan Kejadian</th>
-                    <th>Tempat Kejadian</th>
+                    <th>Nama penduduk</th>
+                    <th>Status Penduduk</th>
+                    <th>Tempat Kejadian</th> 
                     <th>Tanggal Kejadian</th>
                     <th>Penanganan</th>
                     <th>Status Kejadian</th>
-                    <th>Longitude</th>
-                    <th>Latitude</th>
-                    <th>Id Kecamatan</th>
-                    <th>Tools</th>
+                    <th>Tools</th> 
 
                 </tr>
             </thead>
             <tbody>
 
-
-            
-
                  <?php 
 
-                       include '../controller/lihat.php';
+                      
                        $no=1;
                  ?>
          
-            <?php 
-
-             if(isset($_POST['bulan']))
-             {
-                 $koneksi = mysqli_connect("localhost","root","","dbkepolisiann");
-                 $bulan = $_POST['bulan'];
-                 $laporan = mysqli_query($koneksi, "SELECT * from laporan where month(tgl_kejadian)='$bulan'" );
-             }
-             else
-             {
-                $koneksi = mysqli_connect("localhost","root","","dbkepolisiann");
-                $laporan = mysqli_query($koneksi, "SELECT * from laporan" );
-                // $laporan = mysqli_query($koneksi, "SELECT * from detailpenduduk inner join laporan on detailpenduduk.no_lapkejadian=laporan.no_lapkejadian inner join detailstatus on detailpenduduk.nik=detailstatus.nik" );
-
-
-             }
-            
-            
-            foreach($laporan as $row) :?>
+            <?php foreach($laporan as $row) :?>
                 <tr>
                     <td><?php echo $no;?></td>
                     <td><?php echo $row["no_lapkejadian"]; ?></td>
+                    <td><?php echo $row["nama"]; ?></td> 
+                    <td><?php echo $row["status_dlmlap"]; ?></td>
                     <td><?php echo $row["tempat_kejadian"]; ?></td>
                     <td><?php echo $row["tgl_kejadian"]; ?></td>
                     <td><?php echo $row["penanganan"]; ?></td>
-                    <td><?php echo $row["status_kejadian"]; ?></td>
-                    <td><?php echo $row["latitude"]; ?></td>
-                    <td><?php echo $row["longitude"]; ?></td>
-                    <td><?php echo $row["id_kecamatan"]; ?></td>
+                    <td><?php echo $row["status_kejadian"]; ?></td> 
                     
                     <td> 
                       
-                        <a href="../view/haledit.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-warning">Edit</a>
+                        <a href="halamanedit.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-warning">Edit</a>
                         <a href="../controller/hapus.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-danger">Hapus</a>
-                        <a href="../view/haldetail.php?id=<?php echo $row["no_lapkejadian"] ?>"class="button is-primary">Detail</a>
                     </td>
                 </tr>
             <?php $no++; ?>
@@ -114,8 +70,7 @@
 
         <a class="button is-primary" href="tambahlaporan.php">Tambah Data</a>
         <a class="button is-primary" href="halamandetail.php">Detail Data</a>
-        <a class="button is-primary" href="tampilkec.php">Lihat Data per Kecamatan</a>
-
+        <a class="button is-primary" href="halamandetail.php">Unduh Data Laporan</a>
 
     </div>
 

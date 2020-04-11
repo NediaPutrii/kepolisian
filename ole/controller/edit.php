@@ -1,10 +1,10 @@
 <?php 
 
 	require '../model/fungsi.php';
-	//dhinda manis wkwk
+
 	$id = $_GET["id"];
 
-	$laporan = lihat("select * from laporan where id= $id")[0];
+	$laporan = lihat("select * from laporan where id= $id");
 
 	if ( isset($_POST["ubah"]) ) {
     if ( edit($_POST) > 0) {

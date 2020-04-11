@@ -78,13 +78,13 @@ require"model/fungsi.php";
 
 		</table> -->
 		<div class="box">
-		<h3 style="text-align: center;	font-size: 24px; ">Halaman Login</h3>
+		<h3 style="text-align: center;	font-size: 24px; ">Add Member</h3>
 			<br>
 
 			<div class="field">
 			  <label class="label">Username</label>
 			  <div class="control has-icons-left has-icons-right">
-			    <input class="input is-success" type="text" placeholder="Username" name="username" >
+			    <input class="input is-success" type="text" placeholder="Username" name="username" required="">
 			    <span class="icon is-small is-left">
 			      <i class="fas fa-user"></i>
 			    </span>
@@ -97,7 +97,7 @@ require"model/fungsi.php";
 			<div class="field">
 			<label class="label">Password</label>
 			  <p class="control has-icons-left">
-			    <input class="input" type="password" placeholder="Password" name="password">
+			    <input class="input" type="password" placeholder="Password" name="password" required="">
 			    <span class="icon is-small is-left">
 			      <i class="fas fa-lock"></i>
 			    </span>
@@ -116,13 +116,20 @@ require"model/fungsi.php";
 
 			<div class="field">
 			  <p class="control">
-			    <button class="button is-success" name="register">
-			      Sign-In
-			    </button>
+			  	<div class="buttons">
+			  		<button class="button is-success" name="register">
+				      Add 
+				    </button>
+				 
+				      <a href="index.php" class="button is-success">Back</a>
+				   
+				  	</div>
+			    
 			    <p>Sudah terdaftar?<a href="login.php">Klik Disini!</a></p>
 			  </p>
 			</div>
 		</div>
+
 	</form>
 
 </body>

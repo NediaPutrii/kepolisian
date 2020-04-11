@@ -1,22 +1,15 @@
 <?php 
 
-  require '../model/fungsi.php';
+session_start();
 
+include"../koneksi.php";
 
-  if ( isset($_POST["tambah"]) ) {
-    if ( tambah1($_POST) > 0  ) {
-          
-      if (tambah6($_POST)>0) {
+if( !isset($_SESSION["login"])){
+  header("Location: ../login.php");
+  exit;
+}
 
-         if (tambah3($_POST)>0 ) {
-
-         echo "
-        <script>
-        alert('data berhasil ditambahkan');
-        
-        </script>
-      ";
-?>      
+ ?> 
     
 
 <!DOCTYPE html>
@@ -42,7 +35,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
     <style>
-      .button{
+      .buttons{
         float: right;
       }
     </style>
@@ -122,16 +115,73 @@
       <p class="title">Data Petugas</p>
 
 
-     <form action="halamantambah4.php" method="post">
-    <progress class="progress is-warning" value="15" max="100">25%</progress>
-    
+     <form action="" method="post">
+    <tr>
+      <td>Cari Data Petugas: </td>
+      <td>
+        <div class="field">
+          <div class="control">
+            <table>
+              <tr>
+                <td><input class="input" type="text" placeholder="Pencarian" name="nt" ></td>
+                <td><input type="submit" name="submit" value="Cari" class="button"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+      </form>
+      <br>
+
+
+   <table border=1 class="table">
+   
+
+
+    <?php if (ISSET($_POST['submit'])){ ?>
+    <tr> 
+      <td>Nama</td>
+      <td>NRP</td>
+      <td>Jabatan</td>
+      <td>Tools</td>
+
+    </tr>
+    <?php
+     $cari = $_POST['nt'];
+     $query2 = "SELECT * FROM petugaskepolisian WHERE nama LIKE '%$cari%'";
+     
+     $sql = mysqli_query($conn, $query2);
+     while ($r = mysqli_fetch_array($sql)){
+      ?>
+    <tr>
+     <td><?php echo $r['nama']; ?></td>
+     <td><?php echo $r['nrp']; ?></td>
+     <td><?php echo $r['jabatan']; ?></td>
+     <td><div class="buttons">
+         <a href="caripenyidik.php?id=<?php echo $r['nrp'] ?>" class="button">OK</a>
+         <a href="" class="button">Cancel</a>
+      </div></td>
+     
+    </tr>  
+     <?php }} ?>
+
+</table>
+
+
+
+     <form action="../controller/addpenyidik.php" method="post">
+<!--     <progress class="progress is-warning" value="15" max="100">25%</progress>
+ -->    
+ <p class="title">Tambah Data Petugas</p>
     <tr>
       <td>No. Laporan Kejadian </td>
       <td>
         <div class="field">
           <div class="control">
              <input  class="input" type="text" placeholder="No. Laporan Kejadian" name="nolaporan" value="<?php 
-              $nolaporan=$_REQUEST['nolaporan'];
+              $nolaporan=$_SESSION['nolaporan'];
               echo($nolaporan) ?>">
           </div>
         </div>
@@ -139,53 +189,6 @@
     </tr>
 <!--   -->
           
-
-     <?php 
-        include"../koneksi.php";
-            
-          $result = mysqli_query($conn,"SELECT * FROM petugaskepolisian order by nrp");      
-     ?>
-
-  <div class="container">
-  <div class="field">
-    <label class="label">Pilih Petugas Kepolisian</label>
-    <div class="control">
-    <div class="select">
-      <select name="nrppetugas">
-        <?php
-           while($row = mysqli_fetch_assoc($result))
-           {
-        
-             echo "<option value=".$row[nrp].">$row[nrp]-$row[nama]-$row[jabatan]</option>";
-            } 
-    
-       
-        ?>
-      </select>
-    </div>
-  </div>
-</div>
-
-
- <tr>
-      
-      <td> 
-      
-        <button class="button is-success is-outlined" type="submit" name="add">
-            <span class="icon is-small">
-              <i class="fas fa-check"></i>
-            </span>
-            <span>Save</span>
-          </button>
-       
-      </td>
-    </tr>
-
-    <br>
-    <br>
-
-<p class="title">Tambah Petugas Kepolisian </p>
-
 
    <tr>
       <td>NRP </td>
@@ -233,18 +236,32 @@
      <tr>
       
       <td> 
+        <br>
       
+  <div class="buttons">
         <button class="button is-success is-outlined" type="submit" name="tambah">
+            <span class="icon is-small">
+              <i class="fas fa-plus"></i>
+            </span>
+            <span>Add</span>
+          </button>
+
+          <button class="button is-success is-outlined" type="submit" name="save">
             <span class="icon is-small">
               <i class="fas fa-check"></i>
             </span>
             <span>Save</span>
-          </button>
+          </button> 
+
+  </div>
+        
        
       </td>
     </tr>
-<!-- 
-    </table> -->
+
+    <br>
+    <br>
+
     
   </form>
 
@@ -266,17 +283,3 @@
 
 </html>
 
-
-<?php 
-}
-  }
-    }else {
-      echo "
-      <script>
-        alert('data gagal ditambahkan');
-        document.location.href = '../view/tambahlaporan.php';
-        </script>
-      ";
-    }
-  }
-?>

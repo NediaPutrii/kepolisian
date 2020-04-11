@@ -92,7 +92,7 @@ require"model/fungsi.php";
 			    <button class="button is-success" name="login">
 			      Login
 			    </button>
-			    <p>Belum terdaftar?<a href="register.php">Klik Disini!</a></p>
+			    
 			  </p>
 			</div>
 

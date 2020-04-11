@@ -2,6 +2,8 @@
 
 session_start();
 
+include"../koneksi.php";
+
 if( !isset($_SESSION["login"])){
   header("Location: ../login.php");
   exit;
@@ -25,6 +27,9 @@ if( !isset($_SESSION["login"])){
   </head>
   <body>
   <section class="hero is-warning is-bold">
+    
+    
+
     <div class="hero-body">
       <div class="container">
       <img src="..\img\Lambang_Polda_Riau.png" alt="" width="100px" height="100px">
@@ -50,7 +55,7 @@ if( !isset($_SESSION["login"])){
     General
   </p>
   <ul class="menu-list">
-    <li><a  href="index.php">Dashboard</a></li>
+    <li><a  href="../index.php">Dashboard</a></li>
     <li><a class="is-active" href="tambahlaporan.php">Form Laporan Kepolisian</a></li>
     <li><a href="halamantampil.php">Laporan Kepolisian</a></li>
   </ul>
@@ -97,14 +102,72 @@ if( !isset($_SESSION["login"])){
     <div class="tile is-child box">
       <p class="title">Data Pelapor</p>
 
-     <form action="tambahsaksi.php" method="post">
- <!--    <progress class="progress is-warning" value="35" max="100">25%</progress> -->
 
+
+
+      <form action="tambahlaporan.php" method="post">
+    <tr>
+      <td>Cari Data Pelapor: </td>
+      <td>
+        <div class="field">
+          <div class="control">
+            <table>
+              <tr>
+                <td><input class="input" type="text" placeholder="Pencarian" name="nt" ></td>
+                <td><input type="submit" name="submit" value="Cari" class="button"></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </td>
+    </tr>
+
+      </form>
+      <br>
+
+
+  <table border=1 class="table">
+  
+    <?php if (ISSET($_POST['submit'])){ ?>
+      <tr> 
+      <td>Nama</td>
+      <td>NIK</td>
+      <td>Alamat</td>
+      <td>No Telp</td>
+      <td>Tools</td>
+      <tr></tr>
+    <?php 
+     $cari = $_POST['nt'];
+     $query2 = "SELECT * FROM penduduk WHERE nama LIKE '%$cari%'";
+     
+     $sql = mysqli_query($conn, $query2);
+     while ($r = mysqli_fetch_array($sql)){
+      ?>
+    <tr>
+     <td><?php echo $r['nama']; ?></td>
+     <td><?php echo $r['nik']; ?></td>
+     <td><?php echo $r['alamat']; ?></td>
+     <td><?php echo $r['notlp']; ?></td>
+     <td><div class="buttons">
+         <a href="carilaporan.php?id=<?php echo $r['nik'] ?>" class="button">OK</a>
+         <a href="" class="button">Cancel</a>
+      </div></td>
+      
+     
+     </td>
+    </tr>  
+     <?php }} ?>
+
+</table>
+
+
+
+     <form action="../controller/addlaporan.php" method="post">
 
      <?php 
         include"../koneksi.php";
                     
-            $result = mysqli_query($conn,"SELECT * FROM status_penduduk order by id_status");      
+            $result = mysqli_query($conn,"SELECT * FROM status_penduduk where id_status='S01'");      
           ?>
 
           <div class="container">
@@ -277,30 +340,6 @@ if( !isset($_SESSION["login"])){
       </td>
     </tr>
 
-    <br>
-
-    <tr>
-      <td>Kecamatan</td>
-      <td>
-        <div class="control">
-          <div class="select">
-            <select name="kecamatan">
-              <option >Please Select</option>
-              <option value="kc1">Bukit raya </option>
-              <option value="kc2">Pekanbaru Kota</option>
-              <option value="kc3">Lima Puluh</option>
-              <option value="kc4">Rumbai</option>
-              <option value="kc5">Rumbai Pesisir</option>
-              <option value="kc6">Senapelan</option>
-              <option value="kc7">Sukajadi</option>
-              <option value="kc8">Tampan</option>
-            </select>
-          </div>
-        </div>
-
-      </td>
-    </tr>
-
 <br>
 
     <tr>
@@ -350,7 +389,7 @@ function taruhMarker(peta, posisiTitik){
   
 function initialize() {
   var propertiPeta = {
-    center:new google.maps.LatLng(-8.5830695,116.3202515),
+    center:new google.maps.LatLng(0.506566, 101.437790),
     zoom:9,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };

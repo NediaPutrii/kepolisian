@@ -1,12 +1,22 @@
-<?php 
-   require '../model/fungsi.php';
-?>       
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulir</title>
+</head>
+<body>
+  
+  
+</body>
+</html>
+
+
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Polsekta Pauh Padang</title>
+    <title>Polres Kota Pekanbaru</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
@@ -17,16 +27,15 @@
     </style>
   </head>
   <body>
-
   <section class="hero is-warning is-bold">
     <div class="hero-body">
       <div class="container">
-      <img src="img\Lambang_Polda_Sumbar.png" alt="" width="100px" height="100px">
+      <img src="..\img\Lambang_Polda_Riau.png" alt="" width="100px" height="100px">
         <h1 class="title">
-         Kepolisian Sektor Pauh
+         Kepolisian Resor
         </h1> 
       <p class="subtitle">
-         Kota <strong>Padang</strong>
+         Kota <strong>Pekanbaru</strong>
       </p>
       </div>
     </div>
@@ -37,6 +46,8 @@
  <div class="tile is-ancestor">
   <div class="tile is-4 is-vertical is-parent">
     <div class="tile is-child box">
+<!--       <p class="title">One</p>
+ -->      <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.</p> -->
       <aside class="menu">
   <p class="menu-label">
     General
@@ -79,99 +90,22 @@
         <button class="delete" aria-label="delete"></button>
       </div>
       <div class="message-body">
-        <p>Selamat datang di Website Kepolisian pekanbaru.</p>
+        <p>Selamat datang di Website Kepolisian Sektor Pauh Kota Padang.</p>
       </div>
     </article>
     </div>
   </div>
   <div class="tile is-parent">
     <div class="tile is-child box">
-      <p class="title">Pasal</p>
+      <p class="title">Data Pelapor</p>
 
 
-     <form action="kejahatanlaporan.php" method="post">
- <!--    <progress class="progress is-warning" value="15" max="100">25%</progress> -->
+     <form action="halamantambah4.php" method="post">
+    <progress class="progress is-warning" value="15" max="100">25%</progress>
     
- <?php 
-        //include"../koneksi.php";  
-        $koneksi = mysqli_connect("localhost","root","","dbkepolisiann");
-            $result = mysqli_query($koneksi,"SELECT * FROM kejahatan ");   
-
-
-
-          ?>
-
-
-
-          <div class="container">
-            <div class="field">
-              <label class="label"> KEJAHATAN</label>
-                <div class="control">
-                  <div class="select">
-                    <select name="kejahatan">
-                      <?php
-                         while($row = mysqli_fetch_assoc($result))
-                         {
-                      
-                           echo "<option>".$row[id_kejahatan]."</option>";
-                           echo "<option disabled>".$row[nama_kejahatan]."</option>";
-                          } 
-                  
-                     
-                   ?>
-
-                    </select>
-                   
-                  </div>
-                </div>
-                <tr>
-      <td>No laporan</td>
-      <td>
-        <div class="field">
-          <div class="control">
-          <input  class="input" type="text" placeholder="No. Laporan Kejadian" name="nolaporan" value="<?php 
-              $nolaporan=$_REQUEST['nolaporan'];
-              echo($nolaporan) ?>" readonly>          </div>
-        </div>
-      </td>
-    </tr>
-              <!-- </div> 
-              <tr>
-      <td>ID Pasal </td>
-      <td>
-        <div class="field">
-          <div class="control">
-             <input class="input" type="text" placeholder="" name="id_pasal" id="id_pasal">
-          </div>
-        </div>
-      </td>
-    </tr> -->
-
-    <!-- <tr>
-      <td>Pasal</td>
-      <td>
-        <div class="field">
-          <div class="control">
-             <input class="input" type="text" placeholder="" name="pasal" id="id_pasal">
-          </div>
-        </div>
-      </td>
-    </tr>
-
-
-
-    <tr>
-      <td>Isi Pasal</td>
-      <td>
-        <div class="field">
-          <div class="control">
-          <!--    <input class="input" type="text-area" placeholder="" name="isi_pasal" id="id_pasal"> -->
-          <!-- <td><textarea cols="110" rows="10" name="isi_pasal" id="id_pasal"></textarea></td>
-          </div>
-        </div>
-      </td>
-    </tr> -->
-
+ 
+    
+    
 
      <tr>
       
@@ -199,26 +133,14 @@
   <footer class="footer">
   <div class="content has-text-centered">
     <p>
-      <strong>Copyright @Kelompok</strong> 
+      <strong>Copyright @dhinda</strong> 
     </p>
   </div>
 </footer>
-
-<!-- <?php 
-  // $id_pasal = $_POST["id_pasal"];
-  // $pasal= $_POST["pasal"];
-  // $isi_pasal = $_POST["isi_pasal"];
-
-  // $conn = mysqli_connect("localhost","root","","dbkepolisian")
-  // or die("koneksi gagal");
-
-  // $sql = "insert into pasal values ('$id_pasal','$pasal','$isi_pasal')";
-
-  // $hasil = mysqli_query($conn,$sql);
-
- ?> -->
 
   </body>
 
 
 </html>
+
+
